@@ -1,0 +1,4 @@
+rootProject.name = "internet-applications"
+
+include "internet-applications-service"
+include "internet-applications-ui"
