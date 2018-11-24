@@ -1,3 +1,15 @@
 logging:
     pattern:
         console: "[%d] [%-20.20thread] [%clr(%-5.5p)] [%blue(%100.100(%logger %boldCyan(\\(%F:%line\\))))]: %m%n"
+
+spring:
+
+    datasource:
+        url: "jdbc:h2:mem:ia"
+        username: "admin"
+        password: "!QAZxsw2"
+        driver-class-name: org.h2.Driver
+
+    jpa.hibernate.ddl-auto: update
+
+    h2.console.enabled: true
