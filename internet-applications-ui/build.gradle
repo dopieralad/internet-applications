@@ -1,0 +1,28 @@
+plugins {
+    id "com.moowork.node" version "1.2.0"
+}
+
+node {
+    version = "10.0.0"
+    download = true
+    npmVersion = "6.4.1"
+    yarnVersion = "1.9.4"
+}
+
+task yarnBuild(type: YarnTask, dependsOn: yarn) {
+    group "Yarn"
+    description "Builds React application"
+
+    args = ["build"]
+}
+
+task yarnTest(type: YarnTask, dependsOn: yarn) {
+    group "Yarn"
+    description "Tests React application"
+
+    args = ["test-coverage"]
+}
+
+task test(dependsOn: yarnTest)
+
+task build(dependsOn: [yarnBuild, yarnTest])
