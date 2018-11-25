@@ -9,25 +9,18 @@ node {
     yarnVersion = "1.9.4"
 }
 
-task yarnInstall(type: YarnTask) {
-    group "Yarn"
-    description "Installs all Yarn dependencies"
-
-    args = ["install"]
-}
-
-task yarnBuild(type: YarnTask, dependsOn: yarnInstall) {
+task yarnBuild(type: YarnTask, dependsOn: yarn) {
     group "Yarn"
     description "Builds React application"
 
     args = ["build"]
 }
 
-task yarnTest(type: YarnTask, dependsOn: yarnInstall) {
+task yarnTest(type: YarnTask, dependsOn: yarn) {
     group "Yarn"
     description "Tests React application"
 
-    args = ["test"]
+    args = ["test-coverage"]
 }
 
 task test(dependsOn: yarnTest)
