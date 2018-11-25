@@ -2,6 +2,13 @@
   "name": "internet-applications-ui",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test-coverage": "react-scripts test --coverage",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -9,13 +16,6 @@
   },
   "devDependencies": {
     "node-sass": "^4.10.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test-coverage": "react-scripts test --coverage",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
