@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.dopierala.ia.model.person.parent.Parent;
 import pl.dopierala.ia.model.person.parent.ParentRepository;
@@ -25,11 +26,13 @@ public class DatabaseInitializer implements CommandLineRunner {
 
     private final StudentClassRepository studentClassRepository;
     private final ParentRepository parentRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public DatabaseInitializer(StudentClassRepository studentClassRepository, ParentRepository parentRepository) {
+    public DatabaseInitializer(StudentClassRepository studentClassRepository, ParentRepository parentRepository, PasswordEncoder passwordEncoder) {
         this.studentClassRepository = studentClassRepository;
         this.parentRepository = parentRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -55,12 +58,12 @@ public class DatabaseInitializer implements CommandLineRunner {
     private List<Parent> initializeParents(List<StudentClass> studentClasses) {
         final Parent firstParent = new Parent();
         firstParent.setEmail("daniel.dopierala@student.put.poznan.pl");
-        firstParent.setPassword("");
+        firstParent.setPassword(passwordEncoder.encode("!QAZxsw2"));
         studentClasses.stream().findAny().ifPresent(firstParent::setStudentClass);
 
         final Parent secondParent = new Parent();
         secondParent.setEmail("test@example.com");
-        secondParent.setPassword("");
+        secondParent.setPassword(passwordEncoder.encode("test"));
         studentClasses.stream().findAny().ifPresent(secondParent::setStudentClass);
 
         final Set<Parent> parents = Set.of(
