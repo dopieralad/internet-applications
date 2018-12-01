@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
 
 /**
  * Security {@link Configuration} fo the whole application.
@@ -19,11 +20,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
+    private final CsrfTokenRepository csrfTokenRepository;
 
     @Autowired
-    public SecurityConfiguration(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+    public SecurityConfiguration(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder, CsrfTokenRepository csrfTokenRepository) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
+        this.csrfTokenRepository = csrfTokenRepository;
     }
 
     @Override
@@ -39,6 +42,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
 
             .httpBasic()
-            .realmName("InternetApplication");
+            .realmName("InternetApplication")
+            .and()
+
+            .csrf()
+            .csrfTokenRepository(csrfTokenRepository);
     }
 }
