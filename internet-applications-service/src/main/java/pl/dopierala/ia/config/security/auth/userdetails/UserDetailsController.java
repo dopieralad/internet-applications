@@ -2,6 +2,7 @@ package pl.dopierala.ia.config.security.auth.userdetails;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Daniel Dopierała (daniel.dopierala@snpgroup.com)
  * @since 2018/12/01
  */
-@RestController("/auth/user")
+@RestController
+@RequestMapping("/auth/user-details")
 public class UserDetailsController {
 
     @GetMapping
